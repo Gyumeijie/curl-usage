@@ -88,16 +88,17 @@ with a data file
     
 # Summary
 
-If you have binary (non-alphanumeric) data (or a significantly sized payload) to transmit, use multipart/form-data. 
-Otherwise, use application/x-www-form-urlencoded.
+If you have binary (non-alphanumeric) data (or a significantly sized payload) to transmit, `use multipart/form-data`. 
+Otherwise, use `application/x-www-form-urlencoded`.
 
 According to the [specification](https://www.w3.org/TR/html401/interact/forms.html) reserved and non-alphanumeric 
-characters are replaced by `%HH', a percent sign and two hexadecimal digits representing the ASCII code of the character.
+characters are replaced by '%HH', a percent sign and two hexadecimal digits representing the ASCII code of the character.
 
 That means that for each non-alphanumeric byte that exists in one of our values, it's going to take three bytes to represent 
 it. For large binary files, tripling the payload is going to be highly inefficient. In the above example, we can see that
-although the original content from the same ```data``` file, which includes non-alphanumeric bytes, the content transferred through 
-```urlencoded``` is much bigger than through the ```multipart/form``` way. 
+although the original content from the same ```data``` file, which includes non-alphanumeric bytes, the content transferred through ```urlencoded``` is much bigger than through the ```multipart/form``` way. 
 
-Why not use multipart/form-data all the time? For short alphanumeric values (like most web forms), the overhead of adding 
-all of the MIME headers is going to significantly outweigh any savings from more efficient binary encoding.
+# FAQ
+1. Why not use multipart/form-data all the time?
+
+For short alphanumeric values (like most web forms), the overhead of adding  all of the MIME headers is going to significantly outweigh any savings from more efficient binary encoding.
