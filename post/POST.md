@@ -105,7 +105,7 @@ For short alphanumeric values (like most web forms), the overhead of adding  all
 
 2. The application/x-www-form-urlencoded vs urlencode
 
-When the data is sent by a **browser** after data have been filled in a form, it will send it "URL encoded" ***automatically***. But in **curl**, it requires ***you*** provide properly encoded data, data you need to make sure already exists in the right format, While that gives you a lot of freedom, it is also a bit inconvenient at times. 
+When the data is sent by a **browser** after data have been filled in a form, it will send it "URL encoded" ***automatically***. But in **curl**, it requires ***you*** :exclamation: provide properly encoded data, data you need to make sure already exists in the right format, While that gives you a lot of freedom, it is also a bit inconvenient at times. 
 
 To help you send data you haven't already encoded, curl offers the `--data-urlencode` option. This option offers several different ways to **URL encode** the data you give it.
 
@@ -118,4 +118,10 @@ HTTP/1.1 500 Internal Server Error
 ```javascript
 decodeURIComponent('url=https://github.com/Gyumei%jie')
 // Uncaught URIError: URI malformed
+```
+
+```bash
+$ curl -i --data-urlencode 'url=https://github.com/Gyumei%jie' https://git.io --trace-ascii /dev/stdout
+url=https%3A%2F%2Fgithub.com%2FGyumei%25jie
+Location: https://git.io/fxPZD
 ```
